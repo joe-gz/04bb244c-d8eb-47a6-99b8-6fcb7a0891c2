@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {getData} from 'utils/api';
 import store from 'store';
 import {setLocation} from 'actions/actions';
 
@@ -30,6 +31,14 @@ export default class LocationSearch extends Component {
   }
 
   setLocation = () => {
+    const date = new Date();
+    date.setHours(0, 0, 0, 0);
+    const timeStamp = date.getTime()/1000;
+    const params = {
+      location: this.state.place_location,
+      time: timeStamp
+    }
+    getData(params, this.props.setData);
     store.dispatch(setLocation({address: this.state.place_formatted, location: this.state.place_location}));
   }
 
@@ -41,7 +50,7 @@ export default class LocationSearch extends Component {
         <div className='search-input-wrap'>
           <input id='pac-input' type='text' placeholder='Enter a location' />
         </div>
-        <div onClick={this.setLocation}>Next</div>
+        <div className='set-location-next' onClick={this.setLocation}>Next</div>
       </div>
     );
   }
