@@ -12,7 +12,7 @@ export default class LogoColumn extends Component {
     const iconContainer = [];
     for (const key in icons) {
       iconContainer.push(
-        <img key={key} alt={key} style={{height: '100px', width: '100px', margin: '1rem'}} src={icons[key]} />
+        <img key={key} alt={key} className='logo-image' src={icons[key]} />
       )
     }
     return iconContainer

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import store from 'store';
-import {setRainValue, setLowTempValues, setHighTempValues} from 'actions/actions';
+import {setRainValue, setLowTempValues, setHighTempValues, updateMorningRange, updateEveningRange} from 'actions/actions';
 import TextField from 'material-ui/TextField';
 import Slider from 'material-ui/Slider';
 import TimePicker from 'material-ui/TimePicker';
@@ -29,27 +29,27 @@ export default class QueryParameters extends Component {
 
   handleMorningStartChange = (evt, value) => {
     console.log(value);
-    console.log(value.getHours());
+    store.dispatch(updateMorningRange([value, this.props.morningRange[1]]));
   }
 
   handleMorningEndChange = (evt, value) => {
     console.log(value);
-    console.log(value.getHours());
+    store.dispatch(updateMorningRange([this.props.morningRange[0], value]));
   }
 
   handleEveningStartChange = (evt, value) => {
     console.log(value);
-    console.log(value.getHours());
+    store.dispatch(updateEveningRange([value, this.props.eveningRange[1]]));
   }
 
   handleEveningEndChange = (evt, value) => {
     console.log(value);
-    console.log(value.getHours());
+    store.dispatch(updateEveningRange([this.props.eveningRange[0], value]));
   }
 
   render() {
 
-    console.log(this.props.rainValue);
+    console.log(this.props);
     const sliderStyle = {
       height: 'auto',
       marginTop: '10px',
@@ -62,8 +62,8 @@ export default class QueryParameters extends Component {
 
     return (
       <div className={`query-parameter-container ${this.props.location.hasOwnProperty('address') ? 'show-search-params' : 'top-translate'}`}>
-        <h1>Then, change any parameters to guide you</h1>
-        <div>
+        <h1 className='query-params-header'>Then, change any parameters to guide you</h1>
+        <div className='temp-range-wrap'>
           <div>Set low and high temperature range</div>
           <div className='temp-range-container'>
             <TextField style={tempStyles} hintText='Low Temp' type='number' onChange={this.updateLowTempValue} value={this.props.lowTemp} />
@@ -83,44 +83,48 @@ export default class QueryParameters extends Component {
           <div className='rain-percent-value'>{this.props.rainValue}%</div>
         </div>
         <div className='time-range-container'>
-          <div>Set your commute windows</div>
-          <div>Morning: </div>
-          <div className='date-range morning-date-range'>
-            <TimePicker
-              minutesStep={60}
-              className='time-picker'
-              format='ampm'
-              hintText='12hr Format'
-              value={this.state.morningStart}
-              onChange={this.handleMorningStartChange}
-            />
-            <TimePicker
-              minutesStep={60}
-              className='time-picker'
-              format='ampm'
-              hintText='12hr Format'
-              value={this.state.morningEnd}
-              onChange={this.handleMorningEndChange}
-            />
+          <div className='commute-window'>Set your commute windows</div>
+          <div>
+            <div className='date-picker-title'>Morning: </div>
+            <div className='date-range morning-date-range'>
+              <TimePicker
+                minutesStep={60}
+                className='time-picker'
+                format='ampm'
+                hintText='12hr Format'
+                defaultTime={this.props.morningRange ? this.props.morningRange[0] : null}
+                onChange={this.handleMorningStartChange}
+              />
+              <TimePicker
+                minutesStep={60}
+                className='time-picker'
+                format='ampm'
+                hintText='12hr Format'
+                defaultTime={this.props.morningRange ? this.props.morningRange[1] : null}
+                onChange={this.handleMorningEndChange}
+              />
+            </div>
           </div>
-          <div>Evening: </div>
-          <div className='date-range evening-date-range'>
-            <TimePicker
-              minutesStep={60}
-              className='time-picker'
-              format='ampm'
-              hintText='12hr Format'
-              value={this.state.eveningStart}
-              onChange={this.handleEveningStartChange}
-            />
-            <TimePicker
-              minutesStep={60}
-              className='time-picker'
-              format='ampm'
-              hintText='12hr Format'
-              value={this.state.eveningEnd}
-              onChange={this.handleEveningEndChange}
-            />
+          <div>
+            <div className='date-picker-title'>Evening: </div>
+            <div className='date-range evening-date-range'>
+              <TimePicker
+                minutesStep={60}
+                className='time-picker'
+                format='ampm'
+                hintText='12hr Format'
+                defaultTime={this.props.eveningRange ? this.props.eveningRange[0] : null}
+                onChange={this.handleEveningStartChange}
+              />
+              <TimePicker
+                minutesStep={60}
+                className='time-picker'
+                format='ampm'
+                hintText='12hr Format'
+                defaultTime={this.props.eveningRange ? this.props.eveningRange[1] : null}
+                onChange={this.handleEveningEndChange}
+              />
+            </div>
           </div>
         </div>
         <div className='reset-location'>New search</div>

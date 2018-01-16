@@ -8,15 +8,30 @@ import fog from 'images/fog.svg';
 import cloudy from 'images/cloudy.svg';
 import partlyCloudyDay from 'images/cloudyDay.svg';
 import partlyCloudyNight from 'images/cloudyNight.svg';
+import metro from 'images/metro.svg';
+import bike from 'images/bike.svg';
+
+const morningStart = new Date();
+morningStart.setHours(8, 0, 0, 0);
+const morningEnd = new Date();
+morningEnd.setHours(9, 0, 0, 0);
+const eveningStart = new Date();
+eveningStart.setHours(18, 0, 0, 0);
+const eveningEnd = new Date();
+eveningEnd.setHours(19, 0, 0, 0);
 
 export const initialState = {
   location: [],
   rainValue: 0,
   highTemp: 85,
-  lowTemp: 32
+  lowTemp: 32,
+  morningRange: [morningStart, morningEnd],
+  eveningRange: [eveningStart, eveningEnd]
 }
 
 export const icons = {
+  'metro': metro,
+  'bike': bike,
   'clear-day': clearDay,
   'clear-night': clearNight,
   'rain': rain,

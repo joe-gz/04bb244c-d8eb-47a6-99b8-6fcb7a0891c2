@@ -1,4 +1,4 @@
-import { SET_LOCATION, SET_RAIN, SET_HIGH, SET_LOW } from '../constants/actionTypes';
+import { SET_LOCATION, SET_RAIN, SET_HIGH, SET_LOW, UPDATE_MORNING, UPDATE_EVENING } from '../constants/actionTypes';
 import {initialState} from '../utils/config';
 
 export function setLocation (state = initialState.location, action) {
@@ -25,6 +25,20 @@ export function setHighTempValues (state = initialState.highTemp, action) {
 export function setLowTempValues (state = initialState.lowTemp, action) {
   const {type, data} = action;
   return type !== SET_LOW ? state : (
+    data
+  );
+}
+
+export function updateMorningRange (state = initialState.morningRange, action) {
+  const {type, data} = action;
+  return type !== UPDATE_MORNING ? state : (
+    data
+  );
+}
+
+export function updateEveningRange (state = initialState.eveningRange, action) {
+  const {type, data} = action;
+  return type !== UPDATE_EVENING ? state : (
     data
   );
 }
