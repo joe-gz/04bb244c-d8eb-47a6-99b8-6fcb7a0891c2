@@ -10,6 +10,8 @@ import partlyCloudyDay from 'images/cloudyDay.svg';
 import partlyCloudyNight from 'images/cloudyNight.svg';
 import metro from 'images/metro.svg';
 import bike from 'images/bike.svg';
+import metro_blue from 'images/metro_blue.svg';
+import bike_blue from 'images/bike_blue.svg';
 
 const morningStart = new Date();
 morningStart.setHours(8, 0, 0, 0);
@@ -42,6 +44,11 @@ export const icons = {
   'cloudy': cloudy,
   'partly-cloudy-day': partlyCloudyDay,
   'partly-cloudy-night':partlyCloudyNight
+}
+
+export const tileIcons = {
+  'metro': metro_blue,
+  'bike': bike_blue
 }
 
 export const queryUrl = 'https://1miudhz7a9.execute-api.us-east-1.amazonaws.com/dev/forecast/'
