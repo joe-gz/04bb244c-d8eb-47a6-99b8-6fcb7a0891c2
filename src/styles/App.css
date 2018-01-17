@@ -151,7 +151,7 @@ body {
   margin: 1rem; }
 
 .results-wrap {
-  background: white;
+  background: #21b2fe;
   flex: 2;
   height: 100%;
   display: flex;
@@ -188,7 +188,8 @@ body {
   height: 50% !important; }
 
 .grid-tile {
-  height: 100% !important; }
+  height: 100% !important;
+  background: white; }
 
 .grid-tile > img {
   left: 12.5% !important;

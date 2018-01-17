@@ -30,7 +30,7 @@ export default class SearchResults extends Component {
           }
           actionIcon={<img alt={commute} className='weather-image' src={icons[data.icon]} />}
           >
-          <img src={tileIcons[commute]} />
+          <img src={icons[commute]} />
         </GridTile>
       );
     });
@@ -54,7 +54,7 @@ export default class SearchResults extends Component {
           }
           actionIcon={<img alt={commute} className='weather-image' src={icons[data.icon]} />}
           >
-          <img src={tileIcons[commute]} />
+          <img src={icons[commute]} />
         </GridTile>
       );
     });
