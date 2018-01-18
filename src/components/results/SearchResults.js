@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 import {icons, tileIcons} from 'utils/config';
 import {GridList, GridTile} from 'material-ui/GridList';
 
+const dateOptions = {
+  weekday: 'short', month: 'short',
+  day: 'numeric', hour: '2-digit', minute: '2-digit'
+};
 
 export default class SearchResults extends Component {
 
@@ -19,18 +23,19 @@ export default class SearchResults extends Component {
       results.push(
         <GridTile
           className='grid-tile'
+          titleBackground='rgba(0, 0, 0, 0.8)'
           key={'weather_morning_' + i.toString()}
-          title='Add Date'
+          title={commuteText}
           subtitle={
             <div>
+              <div>{time.toLocaleTimeString('en-us', dateOptions)}</div>
               <div>Temp: {data.temperature}</div>
               <div>Chance of rain: {data.precipProbability}%</div>
-              <div>{commuteText}</div>
             </div>
           }
           actionIcon={<img alt={commute} className='weather-image' src={icons[data.icon]} />}
           >
-          <img src={icons[commute]} />
+          <img alt={commute} className='commuter-image' src={tileIcons[commute]} />
         </GridTile>
       );
     });
@@ -41,20 +46,20 @@ export default class SearchResults extends Component {
       const commuteText = commute === 'metro' ? 'Better take the metro!' : 'Feel free to bike!'
       results.push(
         <GridTile
-          style={{height: '50%'}}
           className='grid-tile'
+          titleBackground='rgba(0, 0, 0, 0.8)'
           key={'weather_evening_' + i.toString()}
-          title='Add Date'
+          title={commuteText}
           subtitle={
             <div>
+              <div>{time.toLocaleTimeString('en-us', dateOptions)}</div>
               <div>Temp: {data.temperature}</div>
               <div>Chance of rain: {data.precipProbability}%</div>
-              <div>{commuteText}</div>
             </div>
           }
           actionIcon={<img alt={commute} className='weather-image' src={icons[data.icon]} />}
           >
-          <img src={icons[commute]} />
+          <img alt={commute} className='commuter-image' src={tileIcons[commute]} />
         </GridTile>
       );
     });
@@ -63,7 +68,6 @@ export default class SearchResults extends Component {
   }
 
   render() {
-    console.log(this.props);
     const resultArray = this.props.data.hasOwnProperty('data') ? this.createResults() : [];
     return (
       <div className={`results-wrap ${this.props.data.hasOwnProperty('data') ? 'show-results' : ''}`}>

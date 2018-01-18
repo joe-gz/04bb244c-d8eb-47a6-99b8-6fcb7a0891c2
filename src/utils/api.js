@@ -2,7 +2,6 @@ import {queryUrl, exlusions} from 'utils/config';
 
 export const getData = (parameters, callback) => {
   const queryString = `${queryUrl}${parameters.location[0]},${parameters.location[1]},${parameters.time}${exlusions}`
-  console.log(queryString);
   let request = new XMLHttpRequest();
   request.open('GET', queryString, true);
   request.send();

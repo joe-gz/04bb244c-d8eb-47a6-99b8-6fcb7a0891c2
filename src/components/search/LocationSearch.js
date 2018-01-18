@@ -20,8 +20,6 @@ export default class LocationSearch extends Component {
     autoComplete.addListener('place_changed', () => {
       let place = autoComplete.getPlace();
       let location = place.geometry.location;
-      console.log(place);
-      console.log(location);
 
       this.setState({
         place_formatted: place.formatted_address,

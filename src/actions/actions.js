@@ -1,4 +1,8 @@
-import { SET_LOCATION, SET_RAIN, SET_LOW, SET_HIGH, UPDATE_MORNING, UPDATE_EVENING } from '../constants/actionTypes';
+import { SET_LOCATION, SET_RAIN, SET_LOW, SET_HIGH, UPDATE_MORNING, UPDATE_EVENING, RESET_APP } from '../constants/actionTypes';
+
+export function resetApp (data) {
+  return { type: RESET_APP, data };
+}
 
 export function setLocation (data) {
   return { type: SET_LOCATION, data };

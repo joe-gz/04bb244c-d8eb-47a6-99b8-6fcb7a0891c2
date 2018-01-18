@@ -13,43 +13,39 @@ export default class QueryParameters extends Component {
   }
 
   handleRainSlider = (evt, value) => {
-    console.log(value);
     store.dispatch(setRainValue(value));
   }
 
   updateLowTempValue = (evt, value) => {
-    console.log(value);
     store.dispatch(setLowTempValues(parseInt(value, 10)));
   }
 
   updateHighTempValue = (evt, value) => {
-    console.log(value);
     store.dispatch(setHighTempValues(parseInt(value, 10)));
   }
 
   handleMorningStartChange = (evt, value) => {
-    console.log(value);
     store.dispatch(updateMorningRange([value, this.props.morningRange[1]]));
   }
 
   handleMorningEndChange = (evt, value) => {
-    console.log(value);
     store.dispatch(updateMorningRange([this.props.morningRange[0], value]));
   }
 
   handleEveningStartChange = (evt, value) => {
-    console.log(value);
     store.dispatch(updateEveningRange([value, this.props.eveningRange[1]]));
   }
 
   handleEveningEndChange = (evt, value) => {
-    console.log(value);
     store.dispatch(updateEveningRange([this.props.eveningRange[0], value]));
+  }
+
+  resetApp = () => {
+    this.props.resetApp();
   }
 
   render() {
 
-    console.log(this.props);
     const sliderStyle = {
       height: 'auto',
       marginTop: '10px',
@@ -127,7 +123,7 @@ export default class QueryParameters extends Component {
             </div>
           </div>
         </div>
-        <div className='reset-location'>New search</div>
+        <div className='reset-location' onClick={this.resetApp}>New search</div>
       </div>
     );
   }
