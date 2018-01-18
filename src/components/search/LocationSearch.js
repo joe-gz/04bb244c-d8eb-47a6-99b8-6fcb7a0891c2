@@ -17,15 +17,18 @@ export default class LocationSearch extends Component {
 
   componentDidMount() {
     const inputNode = document.getElementById('pac-input');
+
+    // Create an instantiation of google autocomplete
     let autoComplete = new window.google.maps.places.Autocomplete(inputNode);
 
+    // Add autocomplete event listener
     autoComplete.addListener('place_changed', () => {
       let place = autoComplete.getPlace();
       let location = place.geometry.location;
 
       this.setState({
         place_formatted: place.formatted_address,
-        place_location: [place.geometry.location.lat(), place.geometry.location.lng()],
+        place_location: [location.lat(), location.lng()],
         locationSelected: true,
         errorVisible: false
       });
@@ -38,6 +41,7 @@ export default class LocationSearch extends Component {
       if (this.state.errorVisible) {
         this.setState({errorVisible: false});
       }
+      // Date object to midnight for consistent data search
       const date = new Date();
       date.setHours(0, 0, 0, 0);
       const timeStamp = date.getTime()/1000;

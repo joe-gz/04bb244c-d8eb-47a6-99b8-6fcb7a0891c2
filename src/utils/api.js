@@ -4,7 +4,6 @@ export const getData = (parameters, callback) => {
   const queryString = `${queryUrl}${parameters.location[0]},${parameters.location[1]},${parameters.time}${exlusions}`
   let request = new XMLHttpRequest();
   request.open('GET', queryString, true);
-  request.send();
 
   request.onreadystatechange = function(request){
 
@@ -14,4 +13,5 @@ export const getData = (parameters, callback) => {
       callback(data);
     }
   };
+  request.send();
 }
