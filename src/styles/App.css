@@ -153,6 +153,9 @@ body {
   width: 6rem;
   margin: 1rem; }
 
+.location-error {
+  color: #d62d34; }
+
 .results-wrap {
   background: white;
   flex: 2;
@@ -198,7 +201,10 @@ body {
 .grid-tile {
   height: 100% !important;
   box-shadow: 2px 1px 5px #aaa;
-  background: white; }
+  background: white;
+  transition: all .2s ease-in-out; }
+  .grid-tile:hover {
+    transform: scale(1.02); }
 
 .commuter-image {
   transform: translateY(0%) !important;

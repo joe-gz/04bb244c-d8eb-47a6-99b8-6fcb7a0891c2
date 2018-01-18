@@ -9,7 +9,9 @@ export default class LocationSearch extends Component {
     super(props);
     this.state = {
       place: '',
-      place_location: ''
+      place_location: '',
+      errorVisible: false,
+      locationSelected: false
     };
   }
 
@@ -24,20 +26,30 @@ export default class LocationSearch extends Component {
       this.setState({
         place_formatted: place.formatted_address,
         place_location: [place.geometry.location.lat(), place.geometry.location.lng()],
+        locationSelected: true,
+        errorVisible: false
       });
     });
   }
 
   setLocation = () => {
-    const date = new Date();
-    date.setHours(0, 0, 0, 0);
-    const timeStamp = date.getTime()/1000;
-    const params = {
-      location: this.state.place_location,
-      time: timeStamp
+    if (this.state.locationSelected === true) {
+      console.log(this.state.place_formatted);
+      if (this.state.errorVisible) {
+        this.setState({errorVisible: false});
+      }
+      const date = new Date();
+      date.setHours(0, 0, 0, 0);
+      const timeStamp = date.getTime()/1000;
+      const params = {
+        location: this.state.place_location,
+        time: timeStamp
+      }
+      getData(params, this.props.setData);
+      store.dispatch(setLocation({address: this.state.place_formatted, location: this.state.place_location}));
+    } else {
+      this.setState({errorVisible: true});
     }
-    getData(params, this.props.setData);
-    store.dispatch(setLocation({address: this.state.place_formatted, location: this.state.place_location}));
   }
 
   render() {
@@ -48,6 +60,9 @@ export default class LocationSearch extends Component {
         <div className='search-input-wrap'>
           <input id='pac-input' type='text' placeholder='Enter a location' />
         </div>
+        {this.state.errorVisible ?
+          <div className='location-error'>Please search for a location!</div> : null
+        }
         <div className='set-location-next' onClick={this.setLocation}>Next</div>
       </div>
     );
