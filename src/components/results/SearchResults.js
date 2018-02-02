@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {icons, tileIcons} from 'utils/config';
 import {GridList, GridTile} from 'material-ui/GridList';
 
@@ -7,19 +7,14 @@ const dateOptions = {
   day: 'numeric', hour: '2-digit', minute: '2-digit'
 };
 
-export default class SearchResults extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  createResults = () => {
+const SearchResults = ({weather, morningRange, eveningRange, rainValue, lowTemp, highTemp}) => {
+  console.log(weather);
+  const createResults = () => {
     const results = [];
-    this.props.morningRange.forEach((time, i) => {
-      const data = this.props.data.data[time.getHours()];
+    morningRange.forEach((time, i) => {
+      const data = weather.data[time.getHours()];
       // Determine if metro or bike commute
-      const commute = this.props.rainValue >= data.precipProbability * 100 && this.props.lowTemp < data.temperature && this.props.highTemp > data.temperature ? 'bike' : 'metro';
+      const commute = rainValue >= data.precipProbability * 100 && lowTemp < data.temperature && highTemp > data.temperature ? 'bike' : 'metro';
       const commuteText = commute === 'metro' ? 'Better take the metro!' : 'Feel free to bike!'
       results.push(
         <GridTile
@@ -41,9 +36,9 @@ export default class SearchResults extends Component {
       );
     });
 
-    this.props.eveningRange.forEach((time, i) => {
-      const data = this.props.data.data[time.getHours()];
-      const commute = this.props.rainValue >= data.precipProbability * 100 && this.props.lowTemp < data.temperature && this.props.highTemp > data.temperature ? 'bike' : 'metro';
+    eveningRange.forEach((time, i) => {
+      const data = weather.data[time.getHours()];
+      const commute = rainValue >= data.precipProbability * 100 && lowTemp < data.temperature && highTemp > data.temperature ? 'bike' : 'metro';
       const commuteText = commute === 'metro' ? 'Better take the metro!' : 'Feel free to bike!'
       results.push(
         <GridTile
@@ -68,17 +63,17 @@ export default class SearchResults extends Component {
     return results;
   }
 
-  render() {
-    const resultArray = this.props.data.hasOwnProperty('data') ? this.createResults() : [];
-    return (
-      <div className={`results-wrap ${this.props.data.hasOwnProperty('data') ? 'show-results' : ''}`}>
-        <GridList
-          className='grid-list'
-          style={{height: '100%', margin: '0px'}}
-          >
-          {resultArray}
-        </GridList>
-      </div>
-    );
-  }
+  const resultArray = weather.hasOwnProperty('data') ? createResults() : [];
+  return (
+    <div className={`results-wrap ${weather.hasOwnProperty('data') ? 'show-results' : ''}`}>
+      <GridList
+        className='grid-list'
+        style={{height: '100%', margin: '0px'}}
+        >
+        {resultArray}
+      </GridList>
+    </div>
+  );
 }
+
+export default SearchResults;

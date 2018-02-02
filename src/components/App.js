@@ -70,7 +70,7 @@ class App extends Component {
             </div>
             <div className='window-container'>
               <LogoColumn/>
-              <SearchResults data={data} morningRange={morningRange} eveningRange={eveningRange} rainValue={rainValue} lowTemp={lowTemp} highTemp={highTemp}/>
+              <SearchResults weather={data} morningRange={morningRange} eveningRange={eveningRange} rainValue={rainValue} lowTemp={lowTemp} highTemp={highTemp}/>
             </div>
           </div>
         </div>
