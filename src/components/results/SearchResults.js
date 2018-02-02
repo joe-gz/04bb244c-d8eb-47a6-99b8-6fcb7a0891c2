@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {icons, tileIcons} from 'utils/config';
 import {GridList, GridTile} from 'material-ui/GridList';
 
@@ -7,8 +8,7 @@ const dateOptions = {
   day: 'numeric', hour: '2-digit', minute: '2-digit'
 };
 
-const SearchResults = ({weather, morningRange, eveningRange, rainValue, lowTemp, highTemp}) => {
-  console.log(weather);
+export const SearchResults = ({weather, morningRange, eveningRange, rainValue, lowTemp, highTemp}) => {
   const createResults = () => {
     const results = [];
     morningRange.forEach((time, i) => {
@@ -74,6 +74,13 @@ const SearchResults = ({weather, morningRange, eveningRange, rainValue, lowTemp,
       </GridList>
     </div>
   );
-}
+};
 
-export default SearchResults;
+SearchResults.propTypes = {
+  weather: PropTypes.object,
+  morningRange: PropTypes.array,
+  eveningRange: PropTypes.array,
+  rainValue: PropTypes.number,
+  lowTemp: PropTypes.number,
+  highTemp: PropTypes.number
+};

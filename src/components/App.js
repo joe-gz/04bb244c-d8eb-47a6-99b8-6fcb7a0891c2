@@ -4,7 +4,7 @@ import {resetApp} from 'actions/actions';
 import LocationSearch from 'components/search/LocationSearch';
 import LogoColumn from 'components/search/LogoColumn';
 import QueryParameters from 'components/search/QueryParameters';
-import SearchResults from 'components/results/SearchResults';
+import {SearchResults} from 'components/results/SearchResults';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
