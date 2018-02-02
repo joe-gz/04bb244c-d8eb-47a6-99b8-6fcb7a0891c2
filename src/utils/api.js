@@ -9,7 +9,6 @@ export const getData = (parameters, callback) => {
 
     if(request.target.readyState === 4){
       let data = JSON.parse(request.target.response);
-      console.log(data);
       callback(data);
     }
   };
