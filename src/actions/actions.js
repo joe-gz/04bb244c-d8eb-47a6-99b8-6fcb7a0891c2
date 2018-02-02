@@ -1,4 +1,4 @@
-import { SET_LOCATION, SET_RAIN, SET_LOW, SET_HIGH, UPDATE_MORNING, UPDATE_EVENING, RESET_APP } from '../constants/actionTypes';
+import { SET_LOCATION, SET_RAIN, UPDATE_MORNING, UPDATE_EVENING, RESET_APP, SET_TEMPS } from '../constants/actionTypes';
 
 export function resetApp (data) {
   return { type: RESET_APP, data };
@@ -12,12 +12,8 @@ export function setRainValue (data) {
   return { type: SET_RAIN, data };
 }
 
-export function setLowTempValues (data) {
-  return { type: SET_LOW, data };
-}
-
-export function setHighTempValues (data) {
-  return { type: SET_HIGH, data };
+export function setTempValues (data) {
+  return { type: SET_TEMPS, data };
 }
 
 export function updateMorningRange (data) {

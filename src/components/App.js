@@ -57,8 +57,7 @@ class App extends Component {
   }
 
   render() {
-
-    const {location, rainValue, lowTemp, highTemp, data, morningRange, eveningRange} = this.state
+    const {location, rainValue, temps, data, morningRange, eveningRange} = this.state
 
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
@@ -66,11 +65,11 @@ class App extends Component {
           <div className='container'>
             <div className='search-wrap'>
               <LocationSearch setData={this.setData} location={location}/>
-              <QueryParameters resetApp={this.resetApp} morningRange={morningRange} eveningRange={eveningRange} location={location} rainValue = {rainValue} lowTemp={lowTemp} highTemp={highTemp}/>
+              <QueryParameters resetApp={this.resetApp} morningRange={morningRange} eveningRange={eveningRange} location={location} rainValue = {rainValue} temps={temps}/>
             </div>
             <div className='window-container'>
               <LogoColumn/>
-              <SearchResults data={data} morningRange={morningRange} eveningRange={eveningRange} rainValue={rainValue} lowTemp={lowTemp} highTemp={highTemp}/>
+              <SearchResults data={data} morningRange={morningRange} eveningRange={eveningRange} rainValue={rainValue} temps={temps}/>
             </div>
           </div>
         </div>

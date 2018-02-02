@@ -37,7 +37,6 @@ export default class LocationSearch extends Component {
 
   setLocation = () => {
     if (this.state.locationSelected === true) {
-      console.log(this.state.place_formatted);
       if (this.state.errorVisible) {
         this.setState({errorVisible: false});
       }

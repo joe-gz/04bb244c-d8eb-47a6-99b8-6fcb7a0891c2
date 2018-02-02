@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import store from 'store';
-import {setRainValue, setLowTempValues, setHighTempValues, updateMorningRange, updateEveningRange} from 'actions/actions';
+import {setRainValue, setTempValues, updateMorningRange, updateEveningRange} from 'actions/actions';
 import TextField from 'material-ui/TextField';
 import Slider from 'material-ui/Slider';
 import TimePicker from 'material-ui/TimePicker';
@@ -16,12 +16,8 @@ export default class QueryParameters extends Component {
     store.dispatch(setRainValue(value));
   }
 
-  updateLowTempValue = (evt, value) => {
-    store.dispatch(setLowTempValues(parseInt(value, 10)));
-  }
-
-  updateHighTempValue = (evt, value) => {
-    store.dispatch(setHighTempValues(parseInt(value, 10)));
+  updateTemps = (evt, value) => {
+    store.dispatch(setTempValues({value: parseInt(evt.target.value, 10), type: value}));
   }
 
   handleMorningStartChange = (evt, value) => {
@@ -62,8 +58,8 @@ export default class QueryParameters extends Component {
         <div className='temp-range-wrap'>
           <div>Set low and high temperature range</div>
           <div className='temp-range-container'>
-            <TextField style={tempStyles} hintText='Low Temp' type='number' onChange={this.updateLowTempValue} value={this.props.lowTemp} />
-            <TextField style={tempStyles} hintText='High Temp' type='number' onChange={this.updateHighTempValue} value={this.props.highTemp} />
+            <TextField style={tempStyles} hintText='Low Temp' type='number' onChange={(evt) => {this.updateTemps(evt, 'low');}} value={this.props.temps.low} />
+            <TextField style={tempStyles} hintText='High Temp' type='number' onChange={(evt) => {this.updateTemps(evt, 'high');}} value={this.props.temps.high} />
           </div>
         </div>
         <div className='percent-rain-container'>

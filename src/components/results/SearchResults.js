@@ -19,7 +19,7 @@ export default class SearchResults extends Component {
     this.props.morningRange.forEach((time, i) => {
       const data = this.props.data.data[time.getHours()];
       // Determine if metro or bike commute
-      const commute = this.props.rainValue >= data.precipProbability * 100 && this.props.lowTemp < data.temperature && this.props.highTemp > data.temperature ? 'bike' : 'metro';
+      const commute = this.props.rainValue >= data.precipProbability * 100 && this.props.temps.low < data.temperature && this.props.temps.high > data.temperature ? 'bike' : 'metro';
       const commuteText = commute === 'metro' ? 'Better take the metro!' : 'Feel free to bike!'
       results.push(
         <GridTile
@@ -43,7 +43,7 @@ export default class SearchResults extends Component {
 
     this.props.eveningRange.forEach((time, i) => {
       const data = this.props.data.data[time.getHours()];
-      const commute = this.props.rainValue >= data.precipProbability * 100 && this.props.lowTemp < data.temperature && this.props.highTemp > data.temperature ? 'bike' : 'metro';
+      const commute = this.props.rainValue >= data.precipProbability * 100 && this.props.temps.low < data.temperature && this.props.temps.high > data.temperature ? 'bike' : 'metro';
       const commuteText = commute === 'metro' ? 'Better take the metro!' : 'Feel free to bike!'
       results.push(
         <GridTile

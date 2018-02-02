@@ -25,8 +25,7 @@ eveningEnd.setHours(19, 0, 0, 0);
 export const initialState = {
   location: [],
   rainValue: 0,
-  highTemp: 85,
-  lowTemp: 32,
+  temps: {high: 85, low: 32},
   morningRange: [morningStart, morningEnd],
   eveningRange: [eveningStart, eveningEnd]
 }
